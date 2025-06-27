@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Add a Book</title>
+  <style>
+    body { font-family: sans-serif; max-width: 600px; margin: 3em auto; padding: 0 1em; text-align: center; }
+    h1 { margin-bottom: 1em; }
+  </style>
+</head>
+<body>
+  <script>
+    const PWD = 'booked';  // choose something you share with friends
+    const attempt = prompt('Enter password to add a book:');
+    if (attempt === PWD) {
+      document.write(`<iframe src="YOUR_GOOGLE_FORM_EMBED_URL" 
+                       width="100%" height="600" frameBorder="0">`);
+    } else {
+      document.write('<h2>❌ Access denied</h2><p>If you believe this is an error, check the password with the list moderator.</p>');
+    }
+  </script>
+</body>
+</html>
