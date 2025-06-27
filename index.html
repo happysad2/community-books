@@ -4,12 +4,31 @@
   <meta charset="UTF-8">
   <title>🔖 Community Book List</title>
   <style>
-    body { font-family: sans-serif; max-width: 600px; margin: 2em auto; padding: 0 1em; }
-    h1 { text-align: center; }
-    .book { border-bottom: 1px solid #ddd; padding: 0.75em 0; }
-    .stars { color: #f5a623; }
-    .note { margin: 0.5em 0; color: #555; }
-    a.add { display: block; text-align: center; margin: 1.5em 0; }
+    body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: 2em auto;
+      padding: 0 1em;
+    }
+    h1 {
+      text-align: center;
+    }
+    .book {
+      border-bottom: 1px solid #ddd;
+      padding: 0.75em 0;
+    }
+    .stars {
+      color: #f5a623;
+    }
+    .note {
+      margin: 0.5em 0;
+      color: #555;
+    }
+    a.add {
+      display: block;
+      text-align: center;
+      margin: 1.5em 0;
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/tabletop@1.5.1"></script>
 </head>
@@ -19,27 +38,25 @@
   <a class="add" href="add.html">➕ Add a book</a>
 
   <script>
-    // Replace with your real sheet ID
     const SHEET_ID = '1SlH348_LuhkO0n0OFSUK5ijgcvpTeJRmAPF_hJtGLkI';
-
 
     function starify(n) {
       return '★'.repeat(n) + '☆'.repeat(5 - n);
     }
 
     function showData(data) {
-    const container = document.getElementById('books');
-    container.innerHTML = '';
-    data.forEach(item => {
+      const container = document.getElementById('books');
+      container.innerHTML = '';
+      data.forEach(item => {
         const div = document.createElement('div');
         div.className = 'book';
         div.innerHTML = `
-        <strong>${item['Title']}</strong> — <em>${item['Your Name']}</em><br>
-        <span class="stars">${starify(parseInt(item['Holiday Readability / 5'], 10))}</span>
-        <p class="note">${item['Quick note or summary']}</p>
+          <strong>${item['Title']}</strong> — <em>${item['Your Name']}</em><br>
+          <span class="stars">${starify(parseInt(item['Holiday Readability'], 10))}</span>
+          <p class="note">${item['Quick note or summary']}</p>
         `;
         container.appendChild(div);
-    });
+      });
     }
 
     window.addEventListener('DOMContentLoaded', () => {
