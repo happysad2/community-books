@@ -28,18 +28,18 @@
     }
 
     function showData(data) {
-      const container = document.getElementById('books');
-      container.innerHTML = '';
-      data.forEach(item => {
+    const container = document.getElementById('books');
+    container.innerHTML = '';
+    data.forEach(item => {
         const div = document.createElement('div');
         div.className = 'book';
         div.innerHTML = `
-          <strong>${item.Title}</strong> — <em>${item.Name}</em><br>
-          <span class="stars">${starify(parseInt(item.Rating,10))}</span>
-          <p class="note">${item.Note}</p>
+        <strong>${item['Title']}</strong> — <em>${item['Your Name']}</em><br>
+        <span class="stars">${starify(parseInt(item['Holiday Readability / 5'], 10))}</span>
+        <p class="note">${item['Quick note or summary']}</p>
         `;
         container.appendChild(div);
-      });
+    });
     }
 
     window.addEventListener('DOMContentLoaded', () => {
