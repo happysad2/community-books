@@ -4,16 +4,26 @@
   <meta charset="UTF-8">
   <title>Add a Book</title>
   <style>
-    body { font-family: sans-serif; max-width: 600px; margin: 3em auto; padding: 0 1em; text-align: center; }
-    h1 { margin-bottom: 1em; }
+    body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: 3em auto;
+      padding: 0 1em;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
   <script>
-    const PWD = 'itsagoodbook';  // choose something you share with friends
+    const PWD = 'itsagoodbook';
     const attempt = prompt('Enter password to add a book:');
     if (attempt === PWD) {
-      document.write(`<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScJM1-beEsqDO0by4AL2tXHB-xypE5NjFHumRTXgTWc2aBkyg/viewform?embedded=true" width="640" height="880" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>`);
+      document.write(`
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScJM1-beEsqDO0by4AL2tXHB-xypE5NjFHumRTXgTWc2aBkyg/viewform?embedded=true"
+                width="640" height="880" frameborder="0" marginheight="0" marginwidth="0">
+          Loading…
+        </iframe>
+      `);
     } else {
       document.write('<h2>❌ Access denied</h2><p>If you believe this is an error, check the password with the list moderator.</p>');
     }

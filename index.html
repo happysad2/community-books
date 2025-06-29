@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>🔖 Community Book List</title>
+  <title>🔖 Fam Books ✅</title>
   <style>
     body {
       font-family: sans-serif;
@@ -26,7 +26,6 @@
       margin: 1.5em 0;
     }
   </style>
-  <!-- PapaParse from CDN -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
 </head>
 <body>
@@ -35,48 +34,38 @@
   <a class="add" href="add.html">➕ Add a book</a>
 
   <script>
-    // 1) Your Sheet ID and GID for the "Form Responses 1" tab
     const SHEET_ID = '1SlH348_LuhkO0n0OFSUK5ijgcvpTeJRmAPF_hJtGLkI';
-    const GID       = '366049192';
+    const GID = '366049192';
 
-    // 2) turn a 1–5 number into stars
     function starify(n) {
       return '★'.repeat(n) + '☆'.repeat(5 - n);
     }
 
-    // 3) Render rows
     function showData(rows) {
       const container = document.getElementById('books');
-      container.innerHTML = '';  
+      container.innerHTML = '';
       rows.forEach(item => {
-        // skip any empty rows
         if (!item.Title) return;
+        const rating = parseInt((item["Holiday Readability"] || '').trim(), 10) || 0;
         const div = document.createElement('div');
         div.className = 'book';
         div.innerHTML = `
           <strong>${item.Title}</strong> — <em>${item["Your Name"]}</em><br>
-          <span class="stars">${starify(parseInt(item["Holiday Readability"], 10)||0)}</span>
+          <span class="stars">${starify(rating)}</span>
           <p class="note">${item["Quick note or summary"] || ''}</p>
         `;
         container.appendChild(div);
       });
     }
 
-    // 4) Fetch & parse the CSV
     document.addEventListener('DOMContentLoaded', () => {
-      const url = 
-        `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export` +
-        `?format=csv&gid=${GID}`;
-
+      const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${GID}`;
       Papa.parse(url, {
         download: true,
         header: true,
-        complete: (results) => {
-          showData(results.data);
-        },
-        error: (err) => {
-          document.getElementById('books').textContent =
-            '❌ Error loading data';
+        complete: results => showData(results.data),
+        error: err => {
+          document.getElementById('books').textContent = '❌ Error loading data';
           console.error(err);
         }
       });
